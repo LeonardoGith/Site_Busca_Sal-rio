@@ -6,9 +6,10 @@ from routes.pesquisa import pesquisa_route
 from routes.usercad import usercad_route
 from routes.professioncad import professioncad_route
 
+# inicialização (Sempre no início)
+app = Flask(__name__)
+
 def create_app():
-    # inicialização (Sempre no início)
-    app = Flask(__name__)
 
     app.secret_key = 'mack_enzie_key'
     
