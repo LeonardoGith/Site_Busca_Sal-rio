@@ -6,7 +6,7 @@ from routes.pesquisa import pesquisa_route
 from routes.usercad import usercad_route
 from routes.professioncad import professioncad_route
 
-app = Flask(__name__, template_folder="/templates")
+app = Flask(__name__, template_folder="../templates")
 
 app.secret_key = 'mack_enzie_key'
 
