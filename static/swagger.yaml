@@ -1,0 +1,140 @@
+openapi: 3.0.0
+info:
+  version: "1.0.0"
+  title: "Login API"
+  description: "An API for user login and session management"
+servers:
+  - url: http://127.0.0.1:5000
+paths:
+  /home/check:
+    post:
+      summary: "Verify user login"
+      description: "This endpoint verifies the login credentials of a user and starts a session."
+      operationId: verifyLogin
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - email
+                - Senha
+              properties:
+                email:
+                  type: string
+                  description: "The email of the user trying to log in."
+                  example: "user@example.com"
+                Senha:
+                  type: string
+                  description: "The user's password in plain text."
+                  example: "password123"
+      responses:
+        '200':
+          description: "Login successful, returns the main page."
+          content:
+            text/html:
+              schema:
+                type: string
+                description: "HTML content of the page for authenticated users."
+        '401':
+          description: "Invalid email or password, returns the login page with an error message."
+          content:
+            text/html:
+              schema:
+                type: string
+                description: "HTML content of the page for unauthenticated users."
+  /pesquisa/init:
+    get:
+      tags:
+        - Search
+      summary: "Initialize salary search form"
+      description: "Renders the form to select a profession and region for salary search. Requires the user to be logged in."
+      operationId: initSearch
+      responses:
+        '200':
+          description: "The form is successfully rendered."
+          content:
+            text/html:
+              schema:
+                type: string
+                description: "HTML content of the form."
+        '401':
+          description: "User is not logged in. Redirect to login page."
+          content:
+            text/html:
+              schema:
+                type: string
+                description: "HTML content of the login page."
+  /pesquisa/search:
+    post:
+      tags:
+        - Search
+      summary: "Process salary search"
+      description: "Processes the selected region and profession to calculate and display the average salary."
+      operationId: processSearch
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                profession_id:
+                  type: string
+                  description: "ID of the selected profession."
+                  example: "1"
+                region_id:
+                  type: string
+                  description: "ID of the selected region."
+                  example: "2"
+      responses:
+        '200':
+          description: "The salary search is successfully processed."
+          content:
+            text/html:
+              schema:
+                type: string
+                description: "HTML content with the average salary results."
+        '401':
+          description: "User is not logged in. Redirect to login page."
+          content:
+            text/html:
+              schema:
+                type: string
+                description: "HTML content of the login page."
+        '404':
+          description: "No data found for the selected region and profession."
+          content:
+            text/html:
+              schema:
+                type: string
+                description: "HTML content indicating no data available."
+components:
+  schemas:
+    Region:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: "ID of the region."
+        region_name:
+          type: string
+          description: "Name of the region."
+    Profession:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: "ID of the profession."
+        profession_name:
+          type: string
+          description: "Name of the profession."
+  securitySchemes:
+    sessionCookie:
+      type: apiKey
+      in: cookie
+      name: session
+      description: "A session cookie for authenticated users"
+security:
+  - sessionCookie: []

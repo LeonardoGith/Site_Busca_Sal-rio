@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_swagger_ui import get_swaggerui_blueprint
 from routes.home import home_route
 from routes.cliente import cliente_route
 from routes.login import login_route
@@ -18,6 +19,16 @@ app.register_blueprint(pesquisa_route, url_prefix='/pesquisa')
 app.register_blueprint(usercad_route, url_prefix='/user')
 app.register_blueprint(professioncad_route, url_prefix='/professioncad')
 
+SWAGGER_URL = '/api/docs'  # Swagger UI URL
+API_URL = '/static/swagger.yaml'  # Path to your swagger.yaml file
+
+swaggerui_blueprint = get_swaggerui_blueprint(
+    SWAGGER_URL,  # Swagger UI endpoint
+    API_URL,  # Swagger file endpoint
+    config={'app_name': "Busca Salario"}  # Swagger UI config
+)
+
+app.register_blueprint(swaggerui_blueprint)
 
 def create_app():
     return app
