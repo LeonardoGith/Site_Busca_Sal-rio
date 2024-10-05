@@ -9,17 +9,17 @@ from routes.professioncad import professioncad_route
 # inicialização (Sempre no início)
 app = Flask(__name__)
 
+app.secret_key = 'mack_enzie_key'
+
+app.register_blueprint(login_route)
+app.register_blueprint(home_route, url_prefix='/home')
+app.register_blueprint(cliente_route, url_prefix='/clientes')
+app.register_blueprint(pesquisa_route, url_prefix='/pesquisa')
+app.register_blueprint(usercad_route, url_prefix='/user')
+app.register_blueprint(professioncad_route, url_prefix='/professioncad')
+
+
 def create_app():
-
-    app.secret_key = 'mack_enzie_key'
-    
-    app.register_blueprint(login_route)
-    app.register_blueprint(home_route, url_prefix='/home')
-    app.register_blueprint(cliente_route, url_prefix='/clientes')
-    app.register_blueprint(pesquisa_route, url_prefix='/pesquisa')
-    app.register_blueprint(usercad_route, url_prefix='/user')
-    app.register_blueprint(professioncad_route, url_prefix='/professioncad')
-
     return app
 
 if __name__ == '__main__':
