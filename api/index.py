@@ -16,7 +16,7 @@ def home():
     return 'Hello, World!'
 
 SWAGGER_URL = '/api/docs'  # Swagger UI URL
-API_URL = '../static/swagger.yaml'  # Path to your swagger.yaml file
+API_URL = '/static/swagger.yaml'  # Path to your swagger.yaml file
 
 swaggerui_blueprint = get_swaggerui_blueprint(
     SWAGGER_URL,  # Swagger UI endpoint
