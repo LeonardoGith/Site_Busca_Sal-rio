@@ -12,6 +12,7 @@ app = Flask(__name__)
 
 app.secret_key = 'mack_enzie_key'
 
+
 app.register_blueprint(login_route)
 app.register_blueprint(home_route, url_prefix='/home')
 app.register_blueprint(cliente_route, url_prefix='/clientes')
