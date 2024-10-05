@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_swagger_ui import get_swaggerui_blueprint
 from routes.home import home_route
 from routes.cliente import cliente_route
 from routes.login import login_route
@@ -14,6 +15,16 @@ app.secret_key = 'mack_enzie_key'
 def home():
     return 'Hello, World!'
 
+SWAGGER_URL = '/api/docs'  # Swagger UI URL
+API_URL = '../static/swagger.yaml'  # Path to your swagger.yaml file
+
+swaggerui_blueprint = get_swaggerui_blueprint(
+    SWAGGER_URL,  # Swagger UI endpoint
+    API_URL,  # Swagger file endpoint
+    config={'app_name': "Busca Salario"}  # Swagger UI config
+)
+
+app.register_blueprint(swaggerui_blueprint)
 
 app.register_blueprint(login_route)
 app.register_blueprint(home_route, url_prefix='/home')
