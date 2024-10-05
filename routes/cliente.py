@@ -85,3 +85,5 @@ def deletar_cliente(client_id):
     Deletar informações do Cliente
     """""
     pass
+
+
