@@ -41,6 +41,7 @@ jobs:
       run: |
         export PYTHONPATH=.
         echo $PYTHONPATH
+        ls /home/runner/work/Site_Busca_Sal-rio/Site_Busca_Sal-rio
     - name: Test with pytest
       run: |
         pytest
