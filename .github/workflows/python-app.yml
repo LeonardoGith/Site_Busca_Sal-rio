@@ -40,8 +40,7 @@ jobs:
     - name: Set PYTHONPATH
       run: |
         export PYTHONPATH=$PYTHONPATH:.
-        echo PYTHONPATH
-        echo pwd
+        echo $PYTHONPATH
     - name: Test with pytest
       run: |
         pytest
