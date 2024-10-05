@@ -5,6 +5,7 @@ info:
   description: "An API for user login and session management"
 servers:
   - url: http://127.0.0.1:5000
+  - url: https://buscasalario.vercel.app/
 paths:
   /home/check:
     post:
