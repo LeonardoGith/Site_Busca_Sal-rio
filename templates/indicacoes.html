@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recomendações de Cursos</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link para o CSS separado -->
+</head>
+<body>
+    <div class="container">
+        <h1>Recomendações de Cursos e Habilidades</h1>
+        <label for="profession">Escolha sua profissão:</label>
+        <select id="profession" onchange="updateRecommendations()">
+            <option value="">Selecione uma profissão</option>
+            <option value="analista">Analista de Dados</option>
+            <option value="programador">Programador VBA</option>
+            <option value="webdeveloper">Desenvolvedor Web</option>
+        </select>
+
+        <div id="recommendations" class="recommendations">
+            <!-- Recomendações serão exibidas aqui -->
+        </div>
+    </div>
+
+    <script>
+        function updateRecommendations() {
+            const recommendationsDiv = document.getElementById('recommendations');
+            const profession = document.getElementById('profession').value;
+
+            let recommendations = '';
+
+            if (profession === 'analista') {
+                recommendations = `
+                    <div class="card">
+                        <h2>Curso: Análise de Dados com Python</h2>
+                        <p>Aprenda a manipular e analisar dados usando Python e bibliotecas como Pandas e NumPy.</p>
+                        <button>Ver Curso</button>
+                    </div>
+                    <div class="card">
+                        <h2>Certificação: Certificação em Análise de Dados</h2>
+                        <p>Certifique-se de que você tem as habilidades necessárias para se destacar na análise de dados.</p>
+                        <button>Ver Certificação</button>
+                    </div>
+                    <div class="card">
+                        <h2>Habilidade: Visualização de Dados</h2>
+                        <p>Aprenda a apresentar dados de forma visual usando ferramentas como Tableau e Power BI.</p>
+                        <button>Ver Habilidade</button>
+                    </div>
+                `;
+            } else if (profession === 'programador') {
+                recommendations = `
+                    <div class="card">
+                        <h2>Curso: VBA para Negócios</h2>
+                        <p>Domine a programação VBA para automatizar tarefas no Excel e em outros aplicativos do Office.</p>
+                        <button>Ver Curso</button>
+                    </div>
+                    <div class="card">
+                        <h2>Certificação: Certificação em VBA</h2>
+                        <p>Obtenha a certificação que valida suas habilidades em programação VBA.</p>
+                        <button>Ver Certificação</button>
+                    </div>
+                    <div class="card">
+                        <h2>Habilidade: Automação de Planilhas</h2>
+                        <p>Aprenda a criar macros e scripts para otimizar processos em planilhas do Excel.</p>
+                        <button>Ver Habilidade</button>
+                    </div>
+                `;
+            } else if (profession === 'webdeveloper') {
+                recommendations = `
+                    <div class="card">
+                        <h2>Curso: Desenvolvimento Web Completo</h2>
+                        <p>Aprenda as habilidades essenciais de HTML, CSS, JavaScript e mais para se tornar um desenvolvedor web.</p>
+                        <button>Ver Curso</button>
+                    </div>
+                    <div class="card">
+                        <h2>Certificação: Certificação em Desenvolvimento Web</h2>
+                        <p>Valide suas habilidades com uma certificação reconhecida na área de desenvolvimento web.</p>
+                        <button>Ver Certificação</button>
+                    </div>
+                    <div class="card">
+                        <h2>Habilidade: Frameworks JavaScript</h2>
+                        <p>Domine frameworks populares como React, Angular ou Vue.js para desenvolvimento front-end.</p>
+                        <button>Ver Habilidade</button>
+                    </div>
+                `;
+            } else {
+                recommendations = '<p>Por favor, selecione uma profissão para ver as recomendações.</p>';
+            }
+
+            recommendationsDiv.innerHTML = recommendations;
+        }
+    </script>
+</body>
+</html>

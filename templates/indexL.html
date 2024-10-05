@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="/static/stylesB.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+  <div class="wrapper">
+
+    <form action="/home/check" method="POST">
+      <h1>Login</h1>
+      <div class="input-box">
+        <input type="email" placeholder="E-mail" required id="email" name="email">
+        <i class='bx bxs-user'></i>
+      </div>
+
+      <div class="input-box">
+        <input type="password" placeholder="Senha"  id="Senha" name="Senha" required>
+        <i class='bx bxs-lock-alt' ></i>
+      </div>
+    
+      <button type="submit" class="btn">Login</button>
+      <div class="register-link">
+        <p>Não possui uma conta? <a href="/user/start"> Registre-se</a></p>
+      </div>
+
+      <!-- Display the result -->
+      <div style="text-align: center; justify-content: center">
+        {% if message %}
+            <div>
+                <strong>{{ message }}</strong>
+            </div>
+        {% endif %}
+     </div>
+
+    </form>
+  </div>
+</body>
+</html>

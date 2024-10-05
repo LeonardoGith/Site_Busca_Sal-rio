@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Caixa de Seleção</title>
+
+  <title>Página Inicial HOME</title>
+  <link rel="stylesheet" href="/static/stylesB.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+</head>
+<body >
+    <div class="wrapper" style="width:650px">
+
+        <form action="/pesquisa/search" method="POST">
+            <h2>Selecione uma opção</h2>
+            <div class="form-group">
+                <label for="profession">Profissão</label>
+                <select class="form-control" id="profession" name="profession_id" required>
+                    <!-- As opções abaixo serão populadas dinamicamente -->
+                    {% for profession in professions %}
+                        <option value="{{ profession[0] }}">{{ profession[1] }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="region">Região</label>
+                <select class="form-control" id="region" name="region_id" required>
+                    <!-- As opções abaixo serão populadas dinamicamente -->
+                    {% for region in regions %}
+                        <option value="{{ region[0] }}">{{ region[1] }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+    
+            <input type="submit" value="Enviar" class="btn">
+        </form>
+
+        <!-- Display the result -->
+        <div class="mt-4">
+            {% if region and profession %}
+                <h3>Resultados para {{ profession }} em {{ region }}:</h3>
+                {% if average_salary %}
+                    <div class="alert alert-success">
+                        O salário médio é : <strong>{{ average_salary | round(2) }}</strong>
+                    </div>
+                {% else %}
+                    <div class="alert alert-danger">
+                        Dados de salário para {{ profession }} em {{ region }} <strong>não estão disponíveis</strong>.
+                    </div>
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+ </body>

@@ -1,0 +1,80 @@
+* {
+    box-sizing: border-box; /* Para incluir padding e border no tamanho total */
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px; /* Largura máxima do container */
+    margin: auto; /* Centraliza o container */
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+label {
+    font-size: 18px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.recommendations {
+    display: flex;
+    flex-wrap: wrap; /* Permite que as cartas quebrem para a linha seguinte */
+    justify-content: space-between; /* Espaçamento entre as cartas */
+}
+
+.card {
+    background-color: #e6f7ff;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 10px;
+    flex: 1 1 calc(30% - 20px); /* Três cartas em uma linha com margem */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s; /* Efeito de transição */
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Efeito de levantar ao passar o mouse */
+}
+
+h2 {
+    color: #007bff; /* Cor do título */
+}
+
+p {
+    color: #555;
+}
+
+button {
+    background-color: #007bff; /* Cor do botão */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.2s; /* Efeito de transição */
+}
+
+button:hover {
+    background-color: #0056b3; /* Cor ao passar o mouse */
+}
