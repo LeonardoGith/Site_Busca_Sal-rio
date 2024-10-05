@@ -36,4 +36,5 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with pytest
       run: |
-        pytest
+        cd src  # If your app.py is in the src folder
+        pytest ../tests/  # Adjust the path to where the tests are located
