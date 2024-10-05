@@ -12,8 +12,11 @@
 
 </head>
 <body >
-    <div class="wrapper" style="width:550px; gap: 60px;">
-        <form action="/pesquisa/search" method="POST" style="gap: 60px;">
+        <table>
+            <tr>
+                <td>
+                    <div class="wrapper" style="width:550px; gap: 60px;">
+                        <form action="/pesquisa/search" method="POST" style="gap: 60px;">
             <h2>Selecione uma opção</h2>
             <div class="form-group" style="margin-bottom: 10px;">
                 <label for="profession">Profissão</label>
@@ -54,4 +57,21 @@
             {% endif %}
         </div>
     </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div style="text-align: center">
+                    <a href="/AtualizarPerf/init">Atualizar perfil</a>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="button-container" style="text-align: center ">
+                    <a href="/home/return">Voltar a home</a>
+                </div>
+           </td>
+        </tr>
+        </table>
  </body>

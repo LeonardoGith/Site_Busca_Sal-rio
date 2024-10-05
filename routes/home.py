@@ -50,4 +50,8 @@ def home_tamplate():
         return render_template('indexL.html', message="Senha ou Usuário inválidos")
 
 
+@home_route.route('/return', methods=['GET', 'POST'])
+def home_return():
+    return render_template('indexTH.html')
+
 
