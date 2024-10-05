@@ -9,6 +9,7 @@ def hash_password(password):
     # Use SHA-256 to hash the password
     return hashlib.sha256(password.encode()).hexdigest()
 
+
 # Function to verify login
 def verify_login(useremail, password, db_name="professions.db"):
     # Hash the provided password
