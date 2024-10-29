@@ -1,94 +1,90 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recomendações de Cursos</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Link para o CSS separado -->
+    <title>Indicações Profissionais</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
-<body>
-    <div class="container">
-        <h1>Recomendações de Cursos e Habilidades</h1>
-        <label for="profession">Escolha sua profissão:</label>
-        <select id="profession" onchange="updateRecommendations()">
-            <option value="">Selecione uma profissão</option>
-            <option value="analista">Analista de Dados</option>
-            <option value="programador">Programador VBA</option>
-            <option value="webdeveloper">Desenvolvedor Web</option>
-        </select>
+<body class="bg-blue-500 flex items-center justify-center min-h-screen">
+    <div class="bg-blue-700 text-white w-full max-w-4xl p-4 rounded-lg">
+        <div class="bg-white text-black p-4 rounded-lg mb-4">
+            <h2 class="font-bold mb-2">Usuario logado :</h2>
+            {% if user_email %}
+                <p>{{ user_email }} - RANK :  {{ user_rank }}</p>
+            {% endif %}
+        </div>
+        <div class="flex justify-between items-center mb-4">
 
-        <div id="recommendations" class="recommendations">
-            <!-- Recomendações serão exibidas aqui -->
+            <a href="/home/return" class="bg-blue-300 text-black px-4 py-2 rounded-full flex items-center">
+                <i class="fas fa-arrow-left"></i>
+                <span class="ml-2">Página inicial</span>
+            </a>
+            {% if indicacoes %}
+                   <h1 class="text-xl font-bold"></h1>
+                    {% for indicacao in indicacoes %}
+                        <p>• {{ indicacao[0] }} - Rank : {{ indicacao[5] }}</p>  <!-- Livros -->
+                    {% endfor %}
+                    </h1> <!-- Exibe o email do usuário -->
+
+                {% if has_next %}
+                    <a href="{{ url_for('indicacoes.usuarios', page=page + 1) }}" class="bg-blue-300 text-black px-4 py-2 rounded-full flex items-center">
+                        <span class="mr-2">Próximo Mentor</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                {% else %}
+                    <div class="bg-blue-300 text-black px-4 py-2 rounded-full flex items-center">
+                    <span class="mr-2">Fim da lista</span>
+                    </div>
+                 {% endif %}
+            {% else %}
+                <h1 class="text-xl font-bold mb-4">Fim da lista de Indicações</h1>
+            {% endif %}
+        </div>
+        
+        <div class="grid grid-cols-3 gap-4 text-center mb-4">
+            <div>
+                <h2 class="font-bold">Vídeos Recomendados:</h2>
+                {% if indicacoes %}
+                    {% for indicacao in indicacoes %}
+                        <p>{{ indicacao[2] }}</p>  <!-- Vídeos -->
+                    {% endfor %}
+                {% else %}
+                    <p>Nenhum vídeo recomendado disponível.</p>
+                {% endif %}
+            </div>
+            <div>
+                <h2 class="font-bold">Leitura Essencial:</h2>
+                {% if indicacoes %}
+                    {% for indicacao in indicacoes %}
+                        <p>• {{ indicacao[3] }}</p>  <!-- Livros -->
+                    {% endfor %}
+                {% else %}
+                    <p>Nenhum livro recomendado disponível.</p>
+                {% endif %}
+            </div>
+            <div>
+                <h2 class="font-bold">Cursos:</h2>
+                {% if indicacoes %}
+                    {% for indicacao in indicacoes %}
+                        <p>{{ indicacao[1] }}</p>  <!-- Cursos -->
+                    {% endfor %}
+                {% else %}
+                    <p>Nenhum curso recomendado disponível.</p>
+                {% endif %}
+            </div>
+        </div>
+        
+        <div class="bg-black text-white p-4 rounded-lg mb-4">
+            <h2 class="font-bold mb-2">Texto do Mentor:</h2>
+            {% if indicacoes %}
+                {% for indicacao in indicacoes %}
+                    <p>{{ indicacao[4] }}</p>  <!-- Texto Motivacional -->
+                {% endfor %}
+            {% else %}
+                <p>Nenhum texto motivacional disponível.</p>
+            {% endif %}
         </div>
     </div>
-
-    <script>
-        function updateRecommendations() {
-            const recommendationsDiv = document.getElementById('recommendations');
-            const profession = document.getElementById('profession').value;
-
-            let recommendations = '';
-
-            if (profession === 'analista') {
-                recommendations = `
-                    <div class="card">
-                        <h2>Curso: Análise de Dados com Python</h2>
-                        <p>Aprenda a manipular e analisar dados usando Python e bibliotecas como Pandas e NumPy.</p>
-                        <button>Ver Curso</button>
-                    </div>
-                    <div class="card">
-                        <h2>Certificação: Certificação em Análise de Dados</h2>
-                        <p>Certifique-se de que você tem as habilidades necessárias para se destacar na análise de dados.</p>
-                        <button>Ver Certificação</button>
-                    </div>
-                    <div class="card">
-                        <h2>Habilidade: Visualização de Dados</h2>
-                        <p>Aprenda a apresentar dados de forma visual usando ferramentas como Tableau e Power BI.</p>
-                        <button>Ver Habilidade</button>
-                    </div>
-                `;
-            } else if (profession === 'programador') {
-                recommendations = `
-                    <div class="card">
-                        <h2>Curso: VBA para Negócios</h2>
-                        <p>Domine a programação VBA para automatizar tarefas no Excel e em outros aplicativos do Office.</p>
-                        <button>Ver Curso</button>
-                    </div>
-                    <div class="card">
-                        <h2>Certificação: Certificação em VBA</h2>
-                        <p>Obtenha a certificação que valida suas habilidades em programação VBA.</p>
-                        <button>Ver Certificação</button>
-                    </div>
-                    <div class="card">
-                        <h2>Habilidade: Automação de Planilhas</h2>
-                        <p>Aprenda a criar macros e scripts para otimizar processos em planilhas do Excel.</p>
-                        <button>Ver Habilidade</button>
-                    </div>
-                `;
-            } else if (profession === 'webdeveloper') {
-                recommendations = `
-                    <div class="card">
-                        <h2>Curso: Desenvolvimento Web Completo</h2>
-                        <p>Aprenda as habilidades essenciais de HTML, CSS, JavaScript e mais para se tornar um desenvolvedor web.</p>
-                        <button>Ver Curso</button>
-                    </div>
-                    <div class="card">
-                        <h2>Certificação: Certificação em Desenvolvimento Web</h2>
-                        <p>Valide suas habilidades com uma certificação reconhecida na área de desenvolvimento web.</p>
-                        <button>Ver Certificação</button>
-                    </div>
-                    <div class="card">
-                        <h2>Habilidade: Frameworks JavaScript</h2>
-                        <p>Domine frameworks populares como React, Angular ou Vue.js para desenvolvimento front-end.</p>
-                        <button>Ver Habilidade</button>
-                    </div>
-                `;
-            } else {
-                recommendations = '<p>Por favor, selecione uma profissão para ver as recomendações.</p>';
-            }
-
-            recommendationsDiv.innerHTML = recommendations;
-        }
-    </script>
 </body>
 </html>

@@ -6,6 +6,8 @@ from routes.login import login_route
 from routes.pesquisa import pesquisa_route
 from routes.usercad import usercad_route
 from routes.professioncad import professioncad_route
+from routes.indicacoes import indicacoes_route
+from routes.apiusuario import apiusuario_route
 
 # inicialização (Sempre no início)
 app = Flask(__name__)
@@ -19,6 +21,8 @@ app.register_blueprint(cliente_route, url_prefix='/clientes')
 app.register_blueprint(pesquisa_route, url_prefix='/pesquisa')
 app.register_blueprint(usercad_route, url_prefix='/user')
 app.register_blueprint(professioncad_route, url_prefix='/professioncad')
+app.register_blueprint(indicacoes_route, url_prefix='/indicacoes')
+app.register_blueprint(apiusuario_route, url_prefix='/api/usuarios')
 
 SWAGGER_URL = '/api/docs'  # Swagger UI URL
 API_URL = '/static/swagger.yaml'  # Path to your swagger.yaml file
