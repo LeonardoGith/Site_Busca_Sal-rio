@@ -58,5 +58,5 @@ jobs:
     - name: Run JMeter tests
       run: |
         echo "security.allowed_classes=org.apache.jmeter.save.ScriptWrapper" > user.properties
-        jmeter -n -t tests/TesteBuscaSalario.jmx -l reports/jmeter_results.jtl -q user.properties
+        jmeter -n -t tests/TesteBuscaSalario.jmx -l reports/jmeter_results.jtl -q user.properties -Jxstream.whitelist=org.apache.jmeter.save.ScriptWrapper
         continue-on-error: true
