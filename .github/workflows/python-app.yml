@@ -65,4 +65,4 @@ jobs:
         cat tests/TesteBuscaSalario.jmx
         jmeter -v
         jmeter -n -t tests/TesteBuscaSalario.jmx -l reports/jmeter_results.jtl -q /home/runner/work/Site_Busca_Sal-rio/user.properties -Jxstream.whitelist=org.apache.jmeter.save.ScriptWrapper
-        continue-on-error: true
+      continue-on-error: true
