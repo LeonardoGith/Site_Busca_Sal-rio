@@ -43,3 +43,19 @@ jobs:
         echo $PYTHONPATH
         ls /home/runner/work/Site_Busca_Sal-rio/Site_Busca_Sal-rio
         pytest
+
+    - name: Start Flask application
+      run: |
+        flask run --host=0.0.0.0 --port=5000 &
+      env:
+        FLASK_APP: app.py
+
+    - name: Install JMeter
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y jmeter
+  
+    - name: Run JMeter tests
+      run: |
+        jmeter -n -t tests/TesteBuscaSalario.jmx -l reports/jmeter_results.jtl
+        continue-on-error: true
