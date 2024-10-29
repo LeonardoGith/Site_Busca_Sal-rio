@@ -57,5 +57,5 @@ jobs:
   
     - name: Run JMeter tests
       run: |
-        jmeter -n -t tests/TesteBuscaSalario.jmx -l reports/jmeter_results.jtl
+        jmeter -n -t tests/TesteBuscaSalario.jmx -l reports/jmeter_results.jtl -Jsecurity.allowed_classes=org.apache.jmeter.save.ScriptWrapper
         continue-on-error: true
