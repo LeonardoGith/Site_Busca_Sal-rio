@@ -113,7 +113,8 @@ def create_and_populate_database(db_name="professions.db"):
     for _ in range(150):  # Adjust the range for how many users you want to create
         useremail = f"user{_}@example.com"
         username = f"User{_}"
-        password = f"password{random.randint(1, 100)}"  # Generate a simple password
+        #password = f"password{random.randint(1, 100)}"  # Generate a simple password
+        password = f"password{_}"  # Generate a simple password
         hashed_password = hash_password(password)  # Hash the password
         cursor.execute('''INSERT INTO users (useremail, username, userpassword)
                           VALUES (?, ?, ?)''', (useremail, username, hashed_password))
