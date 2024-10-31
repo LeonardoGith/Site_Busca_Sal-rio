@@ -68,9 +68,9 @@ def test_home_template_success(client):
     with patch('routes.home.verify_login') as mock_verify_login:
         mock_verify_login.return_value = True
 
-        response = client.post('/check', data={'email': 'leonardoemaill1@gmail.com', 'Senha': 'asd'})
+        response = client.post('/check', data={'email': 'user1@example.com', 'Senha': 'password1'})
         assert response.status_code == 200
         #assert b'indexTH.html' in response.data
         assert 'user' in session
-        assert session['user'] == 'leonardoemaill1@gmail.com'
+        assert session['user'] == 'user1@example.com'
 
