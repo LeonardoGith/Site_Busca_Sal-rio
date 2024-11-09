@@ -2,6 +2,8 @@ from flask import Blueprint, jsonify, request
 import hashlib
 import sqlite3
 
+from dados import databasehelper
+
 apiusuario_route = Blueprint('apiusuario',__name__)
 
 """""
@@ -21,7 +23,7 @@ def hash_password(password):
     return hashlib.sha256(password.encode()).hexdigest()
 
 # Função para conectar ao banco de dados e obter todos os usuários
-def get_all_usuarios(db_name="professions.db"):
+def get_all_usuarios(db_name=databasehelper.database_name()):
     conn = sqlite3.connect(db_name)  # Conecte ao seu banco de dados
     cursor = conn.cursor()
     
@@ -31,7 +33,7 @@ def get_all_usuarios(db_name="professions.db"):
     conn.close()
     return usuarios
 
-def get_usuario(user_email, db_name="professions.db"):
+def get_usuario(user_email, db_name=databasehelper.database_name()):
 
     print("vou obter dados de " + user_email)
     conn = sqlite3.connect(db_name)  # Conecte ao seu banco de dados
@@ -45,7 +47,7 @@ def get_usuario(user_email, db_name="professions.db"):
     return usuarios
 
 
-def add_user_to_db(useremail, username, userpassword, db_name="professions.db"):
+def add_user_to_db(useremail, username, userpassword, db_name=databasehelper.database_name()):
     # Hash the password
     hashed_password = hash_password(userpassword)
     
@@ -87,7 +89,7 @@ def api_usuarios_inserir_usuario():
       useremail = new_usuario.get('username')
       userpassword = new_usuario.get('password')
 
-      add_user_to_db(useremail, username, userpassword, db_name="professions.db")
+      add_user_to_db(useremail, username, userpassword, db_name=databasehelper.database_name())
 
       return jsonify({"message": "Usuário adicionado com sucesso!"}), 201
    except Exception as e:
@@ -112,7 +114,7 @@ def api_usuarios_detalhe_usuario(user_email):
 def api_usuarios_deletar_usuario(user_email):
   try:
         # Conectando ao banco de dados
-        conn = sqlite3.connect('professions.db')
+        conn = sqlite3.connect(databasehelper.database_name())
         cursor = conn.cursor()
         
         cursor.execute("DELETE FROM users WHERE useremail = ?", (user_email,))

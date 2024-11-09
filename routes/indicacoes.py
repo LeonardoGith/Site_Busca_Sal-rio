@@ -1,8 +1,10 @@
 from flask import Flask, render_template, g, Blueprint, session, request
 import sqlite3
 
+from dados import databasehelper
+
 # Configurações e inicialização
-DATABASE = 'professions.db'
+DATABASE = db_name=databasehelper.database_name()
 indicacoes_route = Blueprint('indicacoes', __name__)
 
 # Função para obter conexão com o banco de dados

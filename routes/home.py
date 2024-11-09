@@ -2,6 +2,8 @@ from flask import Blueprint, render_template, request, session
 import hashlib
 import sqlite3
 
+from dados import databasehelper
+
 home_route = Blueprint('home',__name__)
 
 # Function to hash passwords
@@ -11,7 +13,7 @@ def hash_password(password):
 
 
 # Function to verify login
-def verify_login(useremail, password, db_name="professions.db"):
+def verify_login(useremail, password, db_name=databasehelper.database_name()):
     # Hash the provided password
     hashed_password = hash_password(password)
     
@@ -43,7 +45,7 @@ def home_tamplate():
     email = request.form['email']
     password = request.form['Senha']
 
-    if verify_login(email, password, db_name="professions.db"):
+    if verify_login(email, password, db_name=databasehelper.database_name()):
         session['user'] = email
         return render_template('indexTH.html')
     else:

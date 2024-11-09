@@ -5,6 +5,7 @@ from flask import session, request, render_template
 from flask.testing import FlaskClient
 from unittest.mock import patch
 from flask import Blueprint
+from dados import databasehelper
 from main import create_app  # Assuming you have an app factory in `app.py`
 from routes.home import hash_password, verify_login, home_route
 
@@ -24,7 +25,7 @@ def client():
         email = request.form['email']
         password = request.form['Senha']
 
-        if verify_login(email, password, db_name="professions.db"):
+        if verify_login(email, password, db_name=databasehelper.database_name()):
             session['user'] = email
             return render_template('indexTH.html')
         else:

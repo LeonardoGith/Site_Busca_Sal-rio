@@ -1,8 +1,10 @@
 from flask import Flask, render_template, request
 import sqlite3
 
+from dados import databasehelper
+
 # Function to get the average salary from the SQLite database
-def calculate_average_salary(region, profession, db_name="professions.db"):
+def calculate_average_salary(region, profession, db_name=databasehelper.database_name()):
     # Connect to the SQLite database
     conn = sqlite3.connect(db_name)
     cursor = conn.cursor()

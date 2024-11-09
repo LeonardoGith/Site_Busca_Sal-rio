@@ -2,6 +2,8 @@ from flask import Blueprint, Flask, render_template, request, redirect, url_for,
 import hashlib
 import sqlite3
 
+from dados import databasehelper
+
 usercad_route = Blueprint('usercad',__name__)
 
 @usercad_route.route('/start')
@@ -13,7 +15,7 @@ def hash_password(password):
     # Use SHA-256 to hash the password
     return hashlib.sha256(password.encode()).hexdigest()
 
-def add_user_to_db(useremail, username, userpassword, db_name="professions.db"):
+def add_user_to_db(useremail, username, userpassword, db_name=databasehelper.database_name()):
     # Hash the password
     hashed_password = hash_password(userpassword)
     

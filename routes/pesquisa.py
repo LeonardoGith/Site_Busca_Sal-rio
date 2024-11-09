@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request, session
 #from routes.databaseLiteInMemory import get_dataframe, calculate_average_salary
+from dados import databasehelper
 from routes.databaseLite import calculate_average_salary
 import sqlite3
 
@@ -7,7 +8,7 @@ pesquisa_route = Blueprint('pesquisa',__name__)
 
 
 def getPesqRefData():
-    conn = sqlite3.connect('professions.db')
+    conn = sqlite3.connect(databasehelper.database_name())
     cursor = conn.cursor()
 
     # If the user is not in the profession_data table, fetch available professions and regions

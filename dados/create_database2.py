@@ -1,6 +1,7 @@
 import sqlite3
 import random
 import hashlib
+import databasehelper
 
 # Options for profession names and regions
 professions = [
@@ -58,7 +59,7 @@ def hash_password(password):
 
 
 # Function to create a SQLite database and populate it
-def create_and_populate_database(db_name="professions.db"):
+def create_and_populate_database(db_name=databasehelper.database_name()):
     # Connect to the SQLite database
     conn = sqlite3.connect(db_name)
     cursor = conn.cursor()

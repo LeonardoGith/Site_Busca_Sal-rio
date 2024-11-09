@@ -2,6 +2,8 @@ import sqlite3
 import random
 import hashlib
 
+from dados import databasehelper
+
 # Options for profession names and regions
 professions = ["Analista de Sistemas", "Analista de Dados", "Programador VBA", "Programador Python"]
 regions = ["São Paulo", "Rio de Janeiro", "Minas Gerais"]
@@ -12,7 +14,7 @@ def hash_password(password):
     return hashlib.sha256(password.encode()).hexdigest()
 
 # Function to create a SQLite database and populate it
-def create_and_populate_database(db_name="professions.db"):
+def create_and_populate_database(db_name=databasehelper.database_name()):
     # Connect to the SQLite database
     conn = sqlite3.connect(db_name)
     cursor = conn.cursor()
@@ -54,7 +56,7 @@ def create_and_populate_database(db_name="professions.db"):
     print(f"Database '{db_name}' created and populated with random profession and user data.")
 
 # Function to verify login
-def verify_login(useremail, password, db_name="professions.db"):
+def verify_login(useremail, password, db_name=databasehelper.database_name()):
     # Hash the provided password
     hashed_password = hash_password(password)
     

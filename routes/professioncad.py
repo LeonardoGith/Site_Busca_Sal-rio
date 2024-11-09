@@ -2,6 +2,8 @@ from flask import Blueprint, Flask, render_template, request, redirect, url_for,
 import hashlib
 import sqlite3
 
+from dados import databasehelper
+
 professioncad_route = Blueprint('professioncad',__name__)
 
 @professioncad_route.route('/init')
@@ -12,7 +14,7 @@ def professioncad_init():
     
     user_email = session['user']
 
-    conn = sqlite3.connect('professions.db')
+    conn = sqlite3.connect(databasehelper.database_name())
     cursor = conn.cursor()
 
     # Check if the user is already in the profession_data table, join with professions and regions to get names
@@ -50,7 +52,7 @@ def add_profession():
     salary = request.form['salary']
     useremail = request.form['email']  # E-mail do usuário logado
 
-    conn = sqlite3.connect('professions.db')
+    conn = sqlite3.connect(databasehelper.database_name())
     cursor = conn.cursor()
 
     # Inserir dados na tabela profession_data
