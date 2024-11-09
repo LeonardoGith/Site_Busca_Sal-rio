@@ -6,7 +6,16 @@ def hash_password(password):
     return hashlib.sha256(password.encode()).hexdigest()
 
 def database_name():
-    name = str(os.path.join(os.getcwd(), 'professions.db'))
+
+    # Check if the environment variable exists
+    if os.getenv('BUSCADB') is not None:
+        print("BUSCADB exists")
+        name = str(os.getenv('BUSCADB')) + '/professions.db'
+    else:
+        name = 'professions.db'
+    
     return name
 
+
+#os.environ['BUSCADB'] = '/home/LeonardoSv/buscasalario'
 print(database_name())
