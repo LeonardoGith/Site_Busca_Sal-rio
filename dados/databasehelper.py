@@ -13,6 +13,8 @@ def database_name():
         name = str(os.getenv('BUSCADB')) + '/professions.db'
     else:
         name = 'professions.db'
+
+    print("db name :" + name)
     
     return name
 
