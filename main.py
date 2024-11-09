@@ -8,6 +8,8 @@ from routes.usercad import usercad_route
 from routes.professioncad import professioncad_route
 from routes.indicacoes import indicacoes_route
 from routes.apiusuario import apiusuario_route
+from routes.webhook import webhook_route
+
 
 # inicialização (Sempre no início)
 app = Flask(__name__)
@@ -23,6 +25,7 @@ app.register_blueprint(usercad_route, url_prefix='/user')
 app.register_blueprint(professioncad_route, url_prefix='/professioncad')
 app.register_blueprint(indicacoes_route, url_prefix='/indicacoes')
 app.register_blueprint(apiusuario_route, url_prefix='/api/usuarios')
+app.register_blueprint(webhook_route, url_prefix='/git_pull')
 
 SWAGGER_URL = '/api/docs'  # Swagger UI URL
 API_URL = '/static/swagger.yaml'  # Path to your swagger.yaml file
@@ -34,6 +37,7 @@ swaggerui_blueprint = get_swaggerui_blueprint(
 )
 
 app.register_blueprint(swaggerui_blueprint)
+
 
 def create_app():
     return app
