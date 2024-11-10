@@ -66,3 +66,11 @@ jobs:
         jmeter -v
         jmeter -n -t tests/TesteBuscaSalario.jmx -l reports/jmeter_results.jtl -q /home/runner/work/Site_Busca_Sal-rio/user.properties -Jxstream.whitelist=org.apache.jmeter.save.ScriptWrapper
       continue-on-error: true
+
+    - name: Deploy to PythonAnywhere
+      if: success()  # Only runs if previous steps were successful
+      env:
+        WEBHOOK_URL: https://leonardosv.pythonanywhere.com/git_pull/  # Update with your webhook URL
+      run: |
+        curl -X POST $WEBHOOK_URL
+      
