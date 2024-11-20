@@ -49,7 +49,7 @@ mensagens_motivacionais = [
 
 
 
-# Function to hash passwords
+# Function to hash passwords - hash da senha
 def hash_password(password):
     # Use SHA-256 to hash the password
     return hashlib.sha256(password.encode()).hexdigest()
