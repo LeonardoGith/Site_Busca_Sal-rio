@@ -9,7 +9,7 @@ home_route = Blueprint('home',__name__)
 # Function to hash passwords
 def hash_password(password):
     # Use SHA-256 to hash the password
-    return hashlib.sha256(password.encode()).hexdigest() + 1
+    return hashlib.sha256(password.encode()).hexdigest()
 
 
 # Function to verify login
