@@ -13,7 +13,7 @@ from routes.webhook import webhook_route
 from routes.atualizarPerfil import atualizarPerfil_route
 
 
-# inicialização (Sempre no início) jjj
+# inicialização (Sempre no início) xxxxxxxx
 app = Flask(__name__)
 
 app.secret_key = 'mack_enzie_key'
