@@ -11,7 +11,7 @@ from routes.home import hash_password, verify_login, home_route
 
 @pytest.fixture
 def client():
-    # Create a test client using Flask's built-in test client mechanism
+    # Create a test client using Flask's built-in test client mechanism teste
     app = create_app()
     app.config['TESTING'] = True
     app.config['SECRET_KEY'] = 'testkey'
