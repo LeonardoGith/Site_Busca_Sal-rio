@@ -56,10 +56,10 @@ def add_profession():
     cursor = conn.cursor()
 
     # Inserir dados na tabela profession_data
-    cursor.execute('''INSERT INTO profession_data (profession_id, region_id, salary, email)
-                      VALUES (?, ?, ?, ?)''', (profession_id, region_id, salary, useremail))
+    cursor.execute('''INSERT INTO profession_data (profession_id, region_id, salary, email, rank)
+                      VALUES (?, ?, ?, ?, 10)''', (profession_id, region_id, salary, useremail))
     
     conn.commit()
     conn.close()
     
-    return render_template('indexH.html')
+    return render_template('indexTH.html')

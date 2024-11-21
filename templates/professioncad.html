@@ -4,17 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inserir Profissão</title>
+    <link rel="stylesheet" href="/static/stylesB.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        .centered-form {
-            max-width: 600px;
-            margin: 50px auto;
-            padding: 20px;
-            background-color: #f8f9fa;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-    </style>
 </head>
 <body>
 
@@ -58,6 +49,9 @@
             <input type="hidden" name="email" value="{{ useremail }}">  <!-- E-mail do usuário logado -->
 
             <button type="submit" class="btn btn-primary btn-block">Salvar</button>
+            <div class="button-container" style="text-align: center; gap: 20px; ">
+                <a href="/home/return">Voltar a home</a>
+            </div>
         </form>
     </div>
 </div>
